@@ -1,14 +1,23 @@
 import com.sun.source.tree.BreakTree;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class AppRunner {
 
     public static int amount;
+    public double calculateDiscount;
+    public double discount;
 
     public static void main(String[] args) {
-        DiscountRule discountRule = new DiscountRule (0.0, Double.MAX_VALUE, 0.05);
-        calculateDiscount(amount);
+        Scanner sc = new Scanner(System.in);
+        double amount = sc.nextDouble();
+        double discount = calculateDiscount(amount);
+        System.out.println("Ваша скидка: " + discount);
+        while(amount > 1000) {
+            System.out.println("Ваша скидка" + calculateDiscount(amount * discount));
+        }
+        System.out.println("Скидка " + calculateDiscount(amount));
     }
 
 
@@ -20,7 +29,7 @@ public class AppRunner {
                 new DiscountRule(5000.0, Double.MAX_VALUE, 0.1)
         );
         for (int i = 0; i < 3; i++) {
-            if (DiscountRule.isApplicable) {
+            if (discountRules.get(i).isApplicable) {
                 DiscountRule.calculateDiscount(amount);
             }
         }
